@@ -36,6 +36,10 @@ This repository includes a Helm chart for deploying NGINX.
 
 Deploying with Helm:
 
+Change into the nginx-chart directory
+
+`cd nginx-chart`
+
 Install the chart:
 
 
