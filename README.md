@@ -1,148 +1,87 @@
-# NGINX Kubernetes Deployment and Helm Chart
+NGINX on Kubernetes: Deployment and Helm Chart
+This repository provides resources for deploying an NGINX web server on a Kubernetes cluster. You can choose between deploying directly with Kubernetes manifests or using a Helm chart.
 
-This repository contains the resources needed to deploy an NGINX web server on a Kubernetes cluster. The deployment can be done using raw Kubernetes manifests or through Helm charts.
+Supported options:
 
-## Kubernetes Deployment
+Kubernetes deployment
+Helm chart deployment
+Port forwarding for local access
+Deployment customization via values.yaml
+Requirements
 
-You can deploy the NGINX web server directly using the provided `deploy.yaml` file.
+A running Kubernetes cluster
+kubectl installed and configured
+Getting Started
 
-### Steps:
+Clone the repository:
 
-1. Clone the repository:
-   ```
-   git clone <repository-url>
-   cd <repository-directory>
 
-Apply the Kubernetes deployment:
+git clone <repository-url>
+cd <repository-directory>
+
+
+Kubernetes Deployment
+The deploy.yaml file defines the NGINX deployment.
+
+Deploying NGINX:
+
+Apply the deployment:
+
 
 kubectl apply -f deploy.yaml
 
-you can verify it by giving the below command 
 
-kubectl get pods 
+Verify the deployment:
 
-you will get output like this 
-
-NAME                                        READY   STATUS    RESTARTS      AGE
-nginx-deployment-6b7f675859-2c2s7           1/1     Running   1 (48m ago)   4h28m
-nginx-deployment-6b7f675859-6ppn5           1/1     Running   1 (48m ago)   4h28m
-nginx-deployment-6b7f675859-954jd           1/1     Running   1 (48m ago)   4h28m
-
-
-Helm Chart Deployment
-Alternatively, you can deploy using the Helm chart included in this repository.
-
-Steps:
-
-Install the Helm chart:
-
-helm install my-nginx .
-
-you can verify pods by giving the below command 
 
 kubectl get pods
 
-you will get output like this 
 
-NAME                                        READY   STATUS    RESTARTS      AGE
-nginx-release-nginx-chart-dbf8b8f5b-2z629   1/1     Running   1 (48m ago)   4h11m
-nginx-release-nginx-chart-dbf8b8f5b-g2g4d   1/1     Running   1 (48m ago)   4h11m
-nginx-release-nginx-chart-dbf8b8f5b-kn5dj   1/1     Running   1 (48m ago)   4h11m
+This should show three pods running the NGINX image.
 
+Helm Chart Deployment
+This repository includes a Helm chart for deploying NGINX.
 
-Accessing the NGINX Service Using Port Forwarding
-Run the following command to forward the port:
+Deploying with Helm:
 
-kubectl port-forward service/nginx-release-nginx-chart 8080:80
-
-now we can access the local host with 8080 port #localhost:8080
-
-you can see the default nginx webpage like this 
-
-Welcome to nginx!
-If you see this page, the nginx web server is successfully installed and working. Further configuration is required.
-
-For online documentation and support please refer to nginx.org.
-Commercial support is available at nginx.com.
-Thank you for using nginx.
-
-Customizing the Deployment
-You can customize the deployment by editing the values.yaml file before running the helm install command
+Install the chart:
 
 
-To uninstall the nginx-release, run:
+helm install my-nginx .
 
 
-
-helm uninstall nginx-release
-This command removes all Kubernetes components associated with the chart.
-
-Configuration
-The values.yaml file allows you to customize the deployment. Below are some of the key configurable parameters:
-
-Replica Count
-Parameter: replicaCount
-Description: Number of replicas for the NGINX Deployment.
-Default: 1
-Image
-Parameter: image.repository
-
-Description: NGINX Docker image repository.
-
-Default: nginx
-
-Parameter: image.tag
-
-Description: NGINX Docker image tag.
-
-Default: "" (uses the app version)
-
-Parameter: image.pullPolicy
-
-Description: Image pull policy.
-
-Default: IfNotPresent
-
-Service
-Parameter: service.type
-
-Description: Kubernetes service type. Options: ClusterIP, NodePort, LoadBalancer.
-
-Default: ClusterIP
-
-Parameter: service.port
-
-Description: Service port.
-
-Default: 80
-
-Ingress
-Parameter: ingress.enabled
-
-Description: Enable Ingress for the service.
-
-Default: false
-
-Parameter: ingress.hosts
-
-Description: List of Ingress hosts.
-
-Default: chart-example.local
-
-Resources
-Parameter: resources
-Description: CPU and memory resource requests and limits.
-Default: {}
-NodeSelector, Tolerations, and Affinity
-Parameters: nodeSelector, tolerations, affinity
-Description: Configurations for pod scheduling.
-Default: {}
+Verify the deployment:
 
 
+kubectl get pods
 
 
+This should show three pods running NGINX managed by the Helm chart.
+
+Accessing the NGINX Service
+Port forward the service:
 
 
+kubectl port-forward service/my-nginx 8080:80
 
 
+Access the NGINX welcome page in your browser:
+
+http://localhost:8080
+You should see the default NGINX welcome page.
+
+Customization (Helm Only)
+Edit the values.yaml file to customize the deployment:
+
+Replica Count: Number of NGINX pods (default: 1)
+Image: Docker image details (repository, tag, pull policy)
+Service: Service type (ClusterIP, NodePort, LoadBalancer) and port (default: 80)
+Ingress: Enable Ingress for external access (default: disabled) with custom hostnames
+Resources: Resource requests and limits for NGINX pods (CPU, memory)
+Node Selector/Tolerations/Affinity: Configure pod scheduling behavior
+
+Uninstalling NGINX (Helm only):
+helm uninstall my-nginx
+
+This removes all Kubernetes resources associated with the chart.
 
