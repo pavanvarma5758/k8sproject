@@ -1,12 +1,13 @@
 ### NGINX on Kubernetes: Deployment and Helm Chart
-
 This repository provides resources for deploying an NGINX web server on a Kubernetes cluster. You can choose between deploying directly with Kubernetes manifests or using a Helm chart.
 
+Prerequisites: 
 A running Kubernetes cluster
 kubectl installed and configured
-Getting Started
 
-Clone the repository:
+> Getting Started
+
+Clone the repository
 
 git clone https://github.com/pavanvarma5758/k8sproject
 
@@ -17,13 +18,13 @@ cd k8sproject
 
 The deploy.yaml file defines the NGINX deployment.
 
-Apply the deployment with this command 
+Apply the deployment: 
 
-kubectl apply -f deploy.yaml
+`kubectl apply -f deploy.yaml`
 
 Verify the deployment with the command 
 
-kubectl get pods
+`kubectl get pods`
 
 
 This should show three pods running the NGINX image.
@@ -38,12 +39,12 @@ Deploying with Helm:
 Install the chart:
 
 
-helm install my-nginx .
+`helm install my-nginx .`
 
 
 we can Verify the deployment with this command
 
-kubectl get pods
+`kubectl get pods`
 
 we will get output like this 
 
@@ -57,7 +58,7 @@ Accessing the NGINX Service
 Port forward the service:
 
 
-kubectl port-forward service/my-nginx 8080:80
+`kubectl port-forward service/my-nginx 8080:80`
 
 
 Access the NGINX welcome page in your browser:
@@ -68,18 +69,23 @@ You should see the default NGINX welcome page.
 ![Screen Shot 2024-08-16 at 2 46 25 PM](https://github.com/user-attachments/assets/30e66149-f866-43d4-ba83-309a6cf9b7d3)
 
 
-Customization (Helm Only)
+Customization 
 Edit the values.yaml file to customize the deployment:
 
-Replica Count: Number of NGINX pods (default: 1)
-Image: Docker image details (repository, tag, pull policy)
-Service: Service type (ClusterIP, NodePort, LoadBalancer) and port (default: 80)
-Ingress: Enable Ingress for external access (default: disabled) with custom hostnames
-Resources: Resource requests and limits for NGINX pods (CPU, memory)
-Node Selector/Tolerations/Affinity: Configure pod scheduling behavior
+* Replica Count: Number of NGINX pods (default: 1)
 
-Uninstalling NGINX (Helm only):
-helm uninstall my-nginx
+* Image: Docker image details (repository, tag, pull policy)
+
+* Service: Service type (ClusterIP, NodePort, LoadBalancer) and port (default: 80)
+
+* Ingress: Enable Ingress for external access (default: disabled) with custom hostnames
+
+* Resources: Resource requests and limits for NGINX pods (CPU, memory)
+
+* Node Selector/Tolerations/Affinity: Configure pod scheduling behavior
+
+Uninstalling NGINX :
+`helm uninstall my-nginx`
 
 This removes all Kubernetes resources associated with the chart.
 
