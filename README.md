@@ -1,7 +1,7 @@
-### NGINX on Kubernetes: Deployment and Helm Chart
+# NGINX on Kubernetes: Deployment and Helm Chart
 This repository provides resources for deploying an NGINX web server on a Kubernetes cluster. You can choose between deploying directly with Kubernetes manifests or using a Helm chart.
 
-Prerequisites: 
+### Prerequisites: 
 A running Kubernetes cluster
 kubectl installed and configured
 
@@ -14,7 +14,7 @@ git clone https://github.com/pavanvarma5758/k8sproject
 cd k8sproject
 
 
-> Kubernetes Deployment
+> ## Kubernetes Deployment
 
 The deploy.yaml file defines the NGINX deployment.
 
@@ -31,7 +31,7 @@ This should show three pods running the NGINX image.
 ![Screen Shot 2024-08-16 at 2 37 23 PM](https://github.com/user-attachments/assets/4628ad57-e472-4a04-a156-69fd7f4270b9)
 
 
-Helm Chart Deployment
+> ## Helm Chart Deployment
 This repository includes a Helm chart for deploying NGINX.
 
 Deploying with Helm:
