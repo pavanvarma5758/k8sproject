@@ -2,7 +2,7 @@
 
 ## Overview
 
-This Helm chart deploys an NGINX web server on a Kubernetes cluster using a Kubernetes Deployment and Service. The chart is highly customizable, allowing you to configure various aspects like replica count, image repository, service type, and more.
+This Helm chart deploys an NGINX web server on a Kubernetes cluster using a Kubernetes Deployment and Service. The chart is highly customizable, allowing you to configure various aspects such as replica count, image repository, service type, and more.
 
 ## Prerequisites
 
@@ -11,16 +11,14 @@ This Helm chart deploys an NGINX web server on a Kubernetes cluster using a Kube
 
 ## Installing the Chart
 
-To install the chart with the release name `nginx-release`:
+To install the chart with the release name `nginx-release`, run:
 
-```
+
 helm install nginx-release ./nginx-chart
 This command installs the chart using default values from the values.yaml file.
 
 Uninstalling the Chart
-To uninstall the nginx-release:
-
-
+To uninstall the nginx-release, run:
 
 helm uninstall nginx-release
 This command removes all Kubernetes components associated with the chart.
@@ -36,47 +34,33 @@ Image
 Parameter: image.repository
 
 Description: NGINX Docker image repository.
-
 Default: nginx
-
 Parameter: image.tag
 
 Description: NGINX Docker image tag.
-
 Default: "" (uses the app version)
-
 Parameter: image.pullPolicy
 
 Description: Image pull policy.
-
 Default: IfNotPresent
-
 Service
 Parameter: service.type
 
 Description: Kubernetes service type. Options: ClusterIP, NodePort, LoadBalancer.
-
 Default: ClusterIP
-
 Parameter: service.port
 
 Description: Service port.
-
 Default: 80
-
 Ingress
 Parameter: ingress.enabled
 
 Description: Enable Ingress for the service.
-
 Default: false
-
 Parameter: ingress.hosts
 
 Description: List of Ingress hosts.
-
 Default: chart-example.local
-
 Resources
 Parameter: resources
 Description: CPU and memory resource requests and limits.
@@ -87,54 +71,8 @@ Description: Configurations for pod scheduling.
 Default: {}
 Accessing the NGINX Service
 Using Port Forwarding
+Run the following command to forward the port:
+
 
 
 kubectl port-forward service/nginx-release-nginx-chart 8080:80
-Access the NGINX service at http://localhost:8080.
-
-Using NodePort
-If you have changed the service type to NodePort, you can access the service via the node's IP and assigned port.
-
-
-
-minikube service nginx-release-nginx-chart --url
-Using Ingress
-If Ingress is enabled and configured, access the service using the specified host:
-
-
-
-http://<your-ingress-host>
-Values
-Below is a list of all configurable values from the values.yaml file and their default settings:
-
-yaml
-
-replicaCount: 1
-
-image:
-  repository: nginx
-  pullPolicy: IfNotPresent
-  tag: ""
-
-service:
-  type: ClusterIP
-  port: 80
-
-ingress:
-  enabled: false
-  className: ""
-  annotations: {}
-  hosts:
-    - host: chart-example.local
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
-  tls: []
-
-resources: {}
-
-nodeSelector: {}
-
-tolerations: []
-
-affinity: {}
