@@ -39,7 +39,7 @@ Deploying with Helm:
 Install the chart:
 
 
-`helm install my-nginx .`
+`helm install nginx-chart .`
 
 
 we can Verify the deployment with this command
@@ -58,7 +58,7 @@ Accessing the NGINX Service
 Port forward the service:
 
 
-`kubectl port-forward service/my-nginx 8080:80`
+`kubectl port-forward service/nginx-chart 8080:80`
 
 
 Access the NGINX welcome page in your browser:
@@ -85,7 +85,7 @@ Edit the values.yaml file to customize the deployment:
 * Node Selector/Tolerations/Affinity: Configure pod scheduling behavior
 
 Uninstalling NGINX :
-`helm uninstall my-nginx`
+`helm uninstall nginx-chart`
 
 This removes all Kubernetes resources associated with the chart.
 
