@@ -1,4 +1,5 @@
 NGINX on Kubernetes: Deployment and Helm Chart
+
 This repository provides resources for deploying an NGINX web server on a Kubernetes cluster. You can choose between deploying directly with Kubernetes manifests or using a Helm chart.
 
 Supported options:
