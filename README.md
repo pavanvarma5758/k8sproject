@@ -21,7 +21,7 @@ Uninstalling the Chart
 To uninstall the nginx-release:
 
 bash
-Copy code
+
 helm uninstall nginx-release
 This command removes all Kubernetes components associated with the chart.
 
@@ -88,7 +88,7 @@ Default: {}
 Accessing the NGINX Service
 Using Port Forwarding
 bash
-Copy code
+
 kubectl port-forward service/nginx-release-nginx-chart 8080:80
 Access the NGINX service at http://localhost:8080.
 
@@ -96,19 +96,19 @@ Using NodePort
 If you have changed the service type to NodePort, you can access the service via the node's IP and assigned port.
 
 bash
-Copy code
+
 minikube service nginx-release-nginx-chart --url
 Using Ingress
 If Ingress is enabled and configured, access the service using the specified host:
 
 bash
-Copy code
+
 http://<your-ingress-host>
 Values
 Below is a list of all configurable values from the values.yaml file and their default settings:
 
 yaml
-Copy code
+
 replicaCount: 1
 
 image:
