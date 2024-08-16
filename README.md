@@ -13,14 +13,14 @@ This Helm chart deploys an NGINX web server on a Kubernetes cluster using a Kube
 
 To install the chart with the release name `nginx-release`:
 
-```bash
+```
 helm install nginx-release ./nginx-chart
 This command installs the chart using default values from the values.yaml file.
 
 Uninstalling the Chart
 To uninstall the nginx-release:
 
-bash
+
 
 helm uninstall nginx-release
 This command removes all Kubernetes components associated with the chart.
@@ -87,7 +87,7 @@ Description: Configurations for pod scheduling.
 Default: {}
 Accessing the NGINX Service
 Using Port Forwarding
-bash
+
 
 kubectl port-forward service/nginx-release-nginx-chart 8080:80
 Access the NGINX service at http://localhost:8080.
@@ -95,13 +95,13 @@ Access the NGINX service at http://localhost:8080.
 Using NodePort
 If you have changed the service type to NodePort, you can access the service via the node's IP and assigned port.
 
-bash
+
 
 minikube service nginx-release-nginx-chart --url
 Using Ingress
 If Ingress is enabled and configured, access the service using the specified host:
 
-bash
+
 
 http://<your-ingress-host>
 Values
