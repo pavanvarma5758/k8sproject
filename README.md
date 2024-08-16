@@ -17,8 +17,9 @@ Getting Started
 Clone the repository:
 
 
-git clone <repository-url>
-cd <repository-directory>
+git clone https://github.com/pavanvarma5758/k8sproject
+
+cd k8sproject
 
 
 Kubernetes Deployment
